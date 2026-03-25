@@ -10,7 +10,7 @@ services:
 
   client:
     build:
-      context: ./client
+      context: ./avito-client
       args:
         VITE_API_URL: http://localhost:8080
         VITE_LLM_API_URL: http://localhost:11434
