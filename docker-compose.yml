@@ -1,0 +1,23 @@
+services:
+  server:
+    build:
+      context: ./server
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: http://localhost:8080
+        VITE_LLM_API_URL: http://localhost:11434
+        VITE_LLM_MODEL: llama3
+        VITE_LLM_API_KEY: ""
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    restart: unless-stopped
